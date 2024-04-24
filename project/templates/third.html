@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to the thrid page of world of programing </h1>
+    <a href="../second">Previous page</a>
+    <a href="../index">First page</a>
+    <table>
+        <thead>Age greater than 30</thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        {% for i in data1 %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.age}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <table>
+        <thead>Age less than 30</thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        {% for i in data2 %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.age}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

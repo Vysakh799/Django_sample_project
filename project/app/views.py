@@ -63,3 +63,37 @@ def bike(request,cost):
     else:
         return HttpResponse("Go and buy a bike pls")
     return HttpResponse("You need to pay {} as road tax".format(road_tax))
+
+
+def index(request,firstno,secondno,thirdno):
+    data="welcome all to my homepage"
+    if firstno<secondno:
+        if secondno<thirdno:
+            thirdno=str(thirdno)+"Largest"
+        else:
+            secondno=str(secondno)+"Largest"
+    else:
+        if firstno<thirdno:
+            thirdno=str(thirdno)+"Largest"
+        else:
+            firstno=str(firstno)+"Largest"
+    return render(request,'index.html',{'data':data,'first':firstno,'second':secondno,'third':thirdno})
+def second(request):
+    data=['Vysakh','Salman','Nihal','Muneeb']
+    data1={'name':'Amal','age':21}
+    return render(request,'second.html',{"data":data,'data1':data1})
+def third(request):
+    data=[{'name':'Amal','age':21},
+          {'name':'Shibili','age':21},
+          {'name':'Reneen','age':21},
+          {'name':'Rajesh','age':50},
+          {'name':'Ramesh','age':48},
+          {'name':'Rathesh','age':46}]
+    data1=[]
+    data2=[]
+    for i in data:
+        if i['age']>=30:
+            data1.append(i)
+        else:
+            data2.append(i)
+    return render(request,'third.html',{'data1':data1,'data2':data2})

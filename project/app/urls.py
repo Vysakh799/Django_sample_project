@@ -8,5 +8,8 @@ urlpatterns = [
     path('/weekday/<int:day>',views.weekday),
     path('/monuments/<city>',views.monumnets),
     path('/divisible/<int:number>',views.divisible),
-    path('/bike/<int:cost>',views.bike)
+    path('/bike/<int:cost>',views.bike),
+    path('',views.index),
+    path('second',views.second),
+    path('third',views.third),
 ]

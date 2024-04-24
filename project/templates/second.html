@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hi welcome to the second page of programming world</h1>
+    <a href="../index">Previous page</a>
+    <a href="../third">Next page</a>
+    <ul>
+        {% for i in data %}
+        <li>{{i}}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        <li>{{data1.name}}</li>
+        <li>{{data1.age}}</li>
+    </ul>
+</body>
+</html>
