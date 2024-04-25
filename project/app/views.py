@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 # Create your views here.
 def func1(request):
@@ -97,3 +97,49 @@ def third(request):
         else:
             data2.append(i)
     return render(request,'third.html',{'data1':data1,'data2':data2})
+data=[]
+def form(request):
+    if request.method=='POST':
+        id=request.POST['id']
+        name=request.POST['name']
+        age=request.POST['age']
+        place=request.POST['place']
+        data.append({'id':id,'name':name,'age':age,'place':place})
+        print(data)
+        return redirect(display)
+    else:
+        return render(request,'form.html')
+def display(request):
+    return render(request,'display.html',{'data':data})
+students=[{'id': '1', 'name': 'Vysakh', 'age': '22', 'place': 'Calicut', 'course': 'Python'}]
+def student(request):
+    return render(request,'student.html')
+def add(request):
+    if request.method=='POST':
+        id=request.POST['id']
+        name=request.POST['name']
+        age=request.POST['age']
+        place=request.POST['place']
+        course=request.POST['course']
+        students.append({'id':id,'name':name,'age':age,'place':place,'course':course})
+        return redirect(student)
+    else:
+        return render(request,'add.html')
+def display_st(request):
+    return render(request,'display_st.html',{'students':students})
+def update(request,i):
+
+    for user in students:
+        if user['id']==i:
+            std=user
+    if request.method=='POST':
+        id=request.POST['id']
+        name=request.POST['name']
+        age=request.POST['age']
+        place=request.POST['place']
+        course=request.POST['course']
+        data=students.index(std)
+        students[data]={'id':id,'name':name,'age':age,'place':place,'course':course}
+    else:
+        return render(request,'update.html',{'user':std})
+        

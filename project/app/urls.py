@@ -9,7 +9,14 @@ urlpatterns = [
     path('/monuments/<city>',views.monumnets),
     path('/divisible/<int:number>',views.divisible),
     path('/bike/<int:cost>',views.bike),
-    path('',views.index),
+    path('index',views.index),
     path('second',views.second),
     path('third',views.third),
+    path('form',views.form),
+    path('display',views.display),
+    path('student',views.student),
+    path('add',views.add),
+    path('display_st',views.display_st),
+    path('update/<i>',views.update),
+    
 ]
