@@ -18,5 +18,6 @@ urlpatterns = [
     path('add',views.add),
     path('display_st',views.display_st),
     path('update/<i>',views.update),
+    path('delete/<i>',views.delete),
     
 ]

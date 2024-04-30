@@ -111,7 +111,7 @@ def form(request):
         return render(request,'form.html')
 def display(request):
     return render(request,'display.html',{'data':data})
-students=[{'id': '1', 'name': 'Vysakh', 'age': '22', 'place': 'Calicut', 'course': 'Python'}]
+students=[]
 def student(request):
     return render(request,'student.html')
 def add(request):
@@ -128,7 +128,6 @@ def add(request):
 def display_st(request):
     return render(request,'display_st.html',{'students':students})
 def update(request,i):
-
     for user in students:
         if user['id']==i:
             std=user
@@ -140,6 +139,13 @@ def update(request,i):
         course=request.POST['course']
         data=students.index(std)
         students[data]={'id':id,'name':name,'age':age,'place':place,'course':course}
+        return redirect(display_st)
     else:
         return render(request,'update.html',{'user':std})
+    
+def delete(request,i):
+    for user in students:
+        if user['id']==i:
+                students.remove(user)
+                return redirect(display_st)
         
