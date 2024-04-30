@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from .models import *
 # Create your views here.
 def func1(request):
     return HttpResponse("<h1>Welcome</h1>")
@@ -111,9 +112,9 @@ def form(request):
         return render(request,'form.html')
 def display(request):
     return render(request,'display.html',{'data':data})
-students=[]
-def student(request):
-    return render(request,'student.html')
+student1s=[]
+def student1(request):
+    return render(request,'student1.html')
 def add(request):
     if request.method=='POST':
         id=request.POST['id']
@@ -121,14 +122,14 @@ def add(request):
         age=request.POST['age']
         place=request.POST['place']
         course=request.POST['course']
-        students.append({'id':id,'name':name,'age':age,'place':place,'course':course})
-        return redirect(student)
+        student1s.append({'id':id,'name':name,'age':age,'place':place,'course':course})
+        return redirect(student1)
     else:
         return render(request,'add.html')
 def display_st(request):
-    return render(request,'display_st.html',{'students':students})
+    return render(request,'display_st.html',{'student1s':student1s})
 def update(request,i):
-    for user in students:
+    for user in student1s:
         if user['id']==i:
             std=user
     if request.method=='POST':
@@ -137,15 +138,25 @@ def update(request,i):
         age=request.POST['age']
         place=request.POST['place']
         course=request.POST['course']
-        data=students.index(std)
-        students[data]={'id':id,'name':name,'age':age,'place':place,'course':course}
+        data=student1s.index(std)
+        student1s[data]={'id':id,'name':name,'age':age,'place':place,'course':course}
         return redirect(display_st)
     else:
         return render(request,'update.html',{'user':std})
     
 def delete(request,i):
-    for user in students:
+    for user in student1s:
         if user['id']==i:
-                students.remove(user)
+                student1s.remove(user)
                 return redirect(display_st)
+def form2(request):
+    if request.method=='POST':
+        id=request.POST['id']
+        name=request.POST['name']
+        age=request.POST['age']
+        data=student.objects.create(roll=id,name=name,age=age)
+        data.save()
+        return redirect(display)
+    else:
+        return render(request,'form2.html')
         
