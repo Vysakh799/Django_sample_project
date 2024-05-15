@@ -8,3 +8,8 @@ class student(models.Model):
 
     def __str__(self):
         return self.name
+
+class uploads(models.Model):
+    dis=models.TextField()
+    file=models.FileField()
+    

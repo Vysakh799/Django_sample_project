@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
+from .forms import *
 # Create your views here.
 def func1(request):
     return HttpResponse("<h1>Welcome</h1>")
@@ -154,9 +155,61 @@ def form2(request):
         id=request.POST['id']
         name=request.POST['name']
         age=request.POST['age']
-        data=student.objects.create(roll=id,name=name,age=age)
+        data=student.objects.create( )
         data.save()
-        return redirect(display)
+        return redirect(display1)
     else:
         return render(request,'form2.html')
-        
+def display1(request):
+    data=student.objects.all()
+    return render(request,'display1.html',{'data':data})
+def update1(request,pk):
+    data=student.objects.get(pk=pk)
+    if request.method=='POST':
+        id=request.POST['id']
+        name=request.POST['name']
+        age=request.POST['age']
+        data=student.objects.filter(pk=pk).update(roll=id,name=name,age=age)
+        return redirect(display1)
+    else:
+        return render(request,'update1.html',{'data':data})
+def delete1(request,pk):
+    student.objects.filter(pk=pk).delete()
+    return redirect(display1)
+
+
+def user_form_dis(request):
+    if request.method=='POST':
+        form=user_form(request.POST)
+        if form.is_valid():
+            roll=form.cleaned_data['roll']
+            name=form.cleaned_data['name']
+            age=form.cleaned_data['age']
+            data=student.objects.create(roll=roll,name=name,age=age)
+            data.save()
+    data=user_form()
+    return render(request,'form_dis.html',{'data':data})
+
+def m_form(request):
+    if request.method=='POST':
+        form=model_form(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect(m_form)
+    else:
+        data=model_form()
+        return render(request,'model_form.html',{'data':data})
+    
+def upld(request):
+    if request.method=='POST':
+        dis=request.POST['dis']
+        file=request.FILES['file']
+        data=uploads.objects.create(dis=dis,file=file)
+        data.save()
+        return redirect(upld)
+    else:
+        return render(request,'fileupload.html')
+    
+def display_fileupload(request):
+    data=uploads.objects.all()
+    return render(request,'display_fileupload.html',{'data':data})

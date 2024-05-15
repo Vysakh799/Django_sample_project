@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="../update1/{{data.pk}}" method="POST">
+        {% csrf_token %}
+        roll <input type="number" name="id" id="" value="{{data.roll}}">
+        name <input type="text" name="name" id="" value="{{data.name}}">
+        age <input type="number" name="age" id="" value="{{data.age}}">
+        <input type="submit" name="" id="" value="submit">
+    </form>
+</body>
+</html>
